@@ -1,9 +1,16 @@
 <?php
 include 'contected.php';
+$id = $_GET['updateid'];
+$sql = "Select * from  `user` where id=$id";
+$result = mysqli_query($con,$sql);
+$row = mysqli_fetch_assoc($result);
+$name = $row['name'];
+$email = $row['email'];
+
 if(isset($_POST['submit'])){
     $name = $_POST['name'];
     $email = $_POST['email'];
-    $sql = "insert into `user`  (name,email) values('$name','$email')";
+    $sql = "update  `user` set id=$id, name='$name', email='$email' where id='$id'";
     $result = mysqli_query($con, $sql);
     if($result){
         header('location:display.php');
@@ -25,11 +32,11 @@ if(isset($_POST['submit'])){
             <form method="POST">
                     <div class="mb-3">
                         <label for="name" class="form-label">User Name</label>
-                        <input required type="text" name="name" class="form-control" id="name"  aria-describedby="emailHelp" autocomplete="off">
+                        <input type="text" name="name" class="form-control" id="name"  aria-describedby="emailHelp" autocomplete="off" value=<?php echo $name ?>>
                         <label for="email" class="form-label">Email</label>
-                        <input required type="email" name="email" class="form-control" id="email"  aria-describedby="emailHelp" autocomplete="off">
+                        <input type="email" name="email" class="form-control" id="email"  aria-describedby="emailHelp" autocomplete="off" value=<?php echo $email ?>>
                     </div>
-                    <button type="submit" name="submit" class="btn btn-primary">Save</button>
+                    <button type="submit" name="submit" class="btn btn-primary">Update</button>
             </form>
         </div>
 </body>

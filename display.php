@@ -21,6 +21,7 @@ include 'contected.php';
                     <th scope="col">Id</th>
                     <th scope="col">Name</th>
                     <th scope="col">Email</th>
+                    <th scope="col">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -36,6 +37,14 @@ include 'contected.php';
                                                 <th scope="row">'.$id.'</th>
                                                 <td>'.$name.'</td>
                                                 <td>'.$email.'</td>
+                                                <td>
+                                                    <a href="update.php?updateid='.$id.'">
+                                                        <button class="btn btn-primary">Update</button>
+                                                    </a>
+                                                    <a href="delete.php?deleteid='.$id.'">
+                                                        <button class="btn btn-danger">Delete</button>
+                                                    </a>
+                                                </td>
                                             </tr>';
                             }
                         }
